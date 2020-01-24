@@ -1,0 +1,19 @@
+
+rr_data=[]	
+def get_RR_data(data):		
+	rr_data.append(data)
+	
+def print_RR_data():
+	print str(rr_data)
+
+
+def pr	
+
+
+
+
+
+
+if __name__ == "__main__":
+    cli()
+

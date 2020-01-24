@@ -82,3 +82,9 @@ Contributions are welcome.
 4. Push to the branch (`git push origin my-feature`)
 5. Create a pull request
 
+sudo gedit /etc/bluetooth/main.conf
+
+Add 
+#EnableLE = true
+#AttributeServer = true
+#DisablePlugins = pnat

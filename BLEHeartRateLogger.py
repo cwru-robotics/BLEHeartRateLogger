@@ -16,7 +16,7 @@
 """
 
 __version__ = "0.1.1"
-
+from CogLoadMeasure import *
 import os
 import sys
 import time
@@ -86,16 +86,19 @@ def interpret(data):
 
     if res["hrv_uint8"]:
         res["hr"] = data[1]
-        i = 2
+	print "HRV_UNIT8"        
+	i = 2
     else:
         res["hr"] = (data[2] << 8) | data[1]
         i = 3
+	#print "HR_HR_HR_HRHR"
 
     if res["ee_status"]:
         res["ee"] = (data[i + 1] << 8) | data[i]
         i += 2
 
     if res["rr_interval"]:
+	i=2
         res["rr"] = []
         while i < len(data):
             # Note: Need to divide the value by 1024 to get in seconds
@@ -305,8 +308,17 @@ def main(addr=None, sqlfile=None, gatttool="gatttool", check_battery=False, hr_h
             log.debug(res)
 
             if sqlfile is None:
-                log.info("Heart rate: " + str(res["hr"]))
-                log.info("RR interval: " + str(res["rr"]))
+                #print type(())res["rr"][0]
+		log.info("Heart rate: " + str(res["hr"]))
+		log.info("RR interval: " + str(res["rr"]))
+		sample_counter()		
+		get_RR_data(res["rr"][0])
+		print_RR_data()
+		time_domain_package()
+		LF_HF_ratio_Real_Time()
+		#print str(time.time())
+		#print_RR_data()	
+		
                 continue
 
             # Push the data to the database
