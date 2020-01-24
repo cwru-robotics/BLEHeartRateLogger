@@ -1,0 +1,3 @@
+[console_scripts]
+BLEHeartRateLogger = BLEHeartRateLogger:cli
+
